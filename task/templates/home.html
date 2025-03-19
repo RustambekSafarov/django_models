@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+
+    <h1>Person Data</h1>
+    <pre id="person"></pre>
+
+    <h1>Product Data</h1>
+    <pre id="product"></pre>
+
+    <script>
+        // Make sure JSON data is properly rendered in the template
+        let personData = JSON.parse("{{ person|escapejs }}");
+        let productData = JSON.parse("{{ product|escapejs }}");
+
+        // Display data in the HTML
+        document.getElementById("person").innerText = JSON.stringify(personData, null, 4);
+        document.getElementById("product").innerText = JSON.stringify(productData, null, 4);
+
+        console.log("Person Data:", personData);
+        console.log("Product Data:", productData);
+    </script>
+
+</body>
+</html>
