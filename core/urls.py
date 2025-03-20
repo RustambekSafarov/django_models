@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('task.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/redoc/', SpectacularSwaggerView.as_view(url_name='schema'), name='redoc'),
+    path('api/auth/', include('rest_framework.urls')),
 ]

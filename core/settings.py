@@ -40,10 +40,27 @@ INSTALLED_APPS = [
     'task.apps.TaskConfig',
     'rest_framework',
     'drf_spectacular',
+    'rest_framework.authtoken',
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS':'drf_spectacular.openapi.AutoSchema'
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    
+    # Remove authentication to make API public
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # Allow all users (no auth)
+    ],
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Public API Docs',
+    'DESCRIPTION': 'API documentation without authentication',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,  # Keep authorization (optional)
+    },
 }
 
 MIDDLEWARE = [
